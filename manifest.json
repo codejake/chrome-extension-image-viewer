@@ -11,7 +11,7 @@
         "128": "images/icon-128.png"
       }
     },
-    "permissions": ["activeTab", "scripting"],
+    "permissions": ["activeTab", "scripting", "downloads"],
     "content_scripts": [
       {
         "matches": ["<all_urls>"],

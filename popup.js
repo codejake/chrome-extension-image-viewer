@@ -50,6 +50,17 @@ document.addEventListener('DOMContentLoaded', function() {
       a.textContent = data.src;
       a.target = '_blank'; // Open links in a new tab
   
+      // Create the Download button
+      let downloadButton = document.createElement('button');
+      downloadButton.textContent = 'Download';
+      downloadButton.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent navigation
+        chrome.downloads.download({ url: data.src }); // Use the chrome.downloads API to download the image
+      });
+
+      // Style the button (optional)
+      downloadButton.style.marginLeft = '10px';
+    
       let thumbnail = document.createElement('span');
       thumbnail.className = 'thumbnail';
       thumbnail.innerHTML = `
@@ -58,6 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
       `;
   
       cell.appendChild(a);
+      cell.appendChild(downloadButton);
       cell.appendChild(thumbnail);
     });
   }
