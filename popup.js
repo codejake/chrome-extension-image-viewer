@@ -15,10 +15,15 @@ document.addEventListener('DOMContentLoaded', function() {
       );
     });
   
-    // Add click event listener to the Large button
+    // Event listener for the Large button
     document.getElementById('largeImagesBtn').addEventListener('click', function() {
       const largeImages = imagesData.filter(data => data.width >= 600);
       populateTable(largeImages);
+    });
+  
+    // Event listener for the Reset button
+    document.getElementById('resetImagesBtn').addEventListener('click', function() {
+      populateTable(imagesData); // Repopulate the table with all images
     });
   });
   
