@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Image URLs</title>
+  <style>
+    body {
+      width: 640px;
+      height: 480px;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      overflow: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th {
+      text-align: left;
+      background-color: #f2f2f2;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:nth-child(odd) {
+      background-color: #ffffff;
+    }
+    td {
+      padding: 8px;
+      border: 1px solid #ddd;
+      position: relative; /* For absolute positioning of the thumbnail */
+    }
+    td:hover .thumbnail {
+      display: block;
+    }
+    .thumbnail {
+      display: none;
+      position: absolute;
+      border: 1px solid #ddd;
+      background: #fff;
+      padding: 5px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+      z-index: 100;
+      top: 100%;
+      left: 0;
+    }
+    .thumbnail img {
+      max-width: 200px; /* Thumbnail max width */
+      max-height: 200px; /* Thumbnail max height */
+    }
+    .dimensions {
+      margin-top: 5px;
+      font-size: 0.9em;
+      color: #666;
+    }
+    #filter-container {
+        padding: 10px;
+        text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div id="filter-container">
+    <button id="largeImagesBtn">Large</button>
+  </div>
+  <table id="imagesTable">
+    <thead>
+      <tr>
+        <th>Image URLs</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Image URLs will be inserted here -->
+    </tbody>
+  </table>
+  <script src="popup.js"></script>
+</body>
+</html>
