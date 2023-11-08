@@ -45,8 +45,8 @@
       left: 0;
     }
     .thumbnail img {
-      max-width: 200px; /* Thumbnail max width */
-      max-height: 200px; /* Thumbnail max height */
+      max-width: 400px; /* Thumbnail max width */
+      max-height: 400px; /* Thumbnail max height */
     }
     .dimensions {
       margin-top: 5px;
@@ -64,8 +64,13 @@
   </style>
 </head>
 <body>
+  <header>
+    <h2>Jake's Image Viewer</h2>
+  </header>
   <div id="filter-container">
     Filter by image size: 
+    <button id="tinyImagesBtn">Tiny</button>
+    <button id="smallImagesBtn">Small</button>
     <button id="largeImagesBtn">Large</button>
     <button id="resetImagesBtn">Reset</button>
   </div>

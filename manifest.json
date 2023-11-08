@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Image Viewer",
+    "name": "Jake's Image Viewer",
     "version": "1.0",
     "description": "Shows all the images on a page.",
     "action": {

@@ -14,7 +14,19 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       );
     });
-  
+
+    // Event listener for the Tiny button
+    document.getElementById('tinyImagesBtn').addEventListener('click', function() {
+      const tinyImages = imagesData.filter(data => data.width <= 100);
+      populateTable(tinyImages);
+    });
+    
+    // Event listener for the Small button
+    document.getElementById('smallImagesBtn').addEventListener('click', function() {
+      const smallImages = imagesData.filter(data => data.width <= 400);
+      populateTable(smallImages);
+    });
+
     // Event listener for the Large button
     document.getElementById('largeImagesBtn').addEventListener('click', function() {
       const largeImages = imagesData.filter(data => data.width >= 600);
@@ -71,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
       linkCell.appendChild(a);
       linkCell.appendChild(thumbnail);
-      
+
       // Cell for the Download button
       let downloadCell = row.insertCell(1);
       let downloadButton = document.createElement('button');
@@ -81,16 +93,6 @@ document.addEventListener('DOMContentLoaded', function() {
         chrome.downloads.download({ url: data.src }); // Download the image
       });
       downloadCell.appendChild(downloadButton);
-
-      // Cell for the thumbnail and dimensions
-      // let thumbnailCell = row.insertCell(2);
-      // let thumbnail = document.createElement('span');
-      // thumbnail.className = 'thumbnail';
-      // thumbnail.innerHTML = `
-      //   <img src="${data.src}" alt="Thumbnail" style="max-width:100px; max-height:100px;">
-      //   <div class="dimensions">Dimensions: ${data.width} x ${data.height}</div>
-      // `;
-      // thumbnailCell.appendChild(thumbnail);
   });
 }
   
