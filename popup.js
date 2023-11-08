@@ -60,8 +60,18 @@ document.addEventListener('DOMContentLoaded', function() {
       a.href = data.src;
       a.textContent = data.src;
       a.target = '_blank'; // Open links in a new tab
-      linkCell.appendChild(a);
 
+      // Thumbnail and dimensions
+      let thumbnail = document.createElement('span');
+      thumbnail.className = 'thumbnail';
+      thumbnail.innerHTML = `
+        <img src="${data.src}" alt="Thumbnail" style="max-width:100px; max-height:100px;">
+        <div class="dimensions">Dimensions: ${data.width} x ${data.height}</div>
+      `;
+
+      linkCell.appendChild(a);
+      linkCell.appendChild(thumbnail);
+      
       // Cell for the Download button
       let downloadCell = row.insertCell(1);
       let downloadButton = document.createElement('button');
@@ -73,14 +83,14 @@ document.addEventListener('DOMContentLoaded', function() {
       downloadCell.appendChild(downloadButton);
 
       // Cell for the thumbnail and dimensions
-      let thumbnailCell = row.insertCell(2);
-      let thumbnail = document.createElement('span');
-      thumbnail.className = 'thumbnail';
-      thumbnail.innerHTML = `
-        <img src="${data.src}" alt="Thumbnail" style="max-width:100px; max-height:100px;">
-        <div class="dimensions">Dimensions: ${data.width} x ${data.height}</div>
-      `;
-      thumbnailCell.appendChild(thumbnail);
+      // let thumbnailCell = row.insertCell(2);
+      // let thumbnail = document.createElement('span');
+      // thumbnail.className = 'thumbnail';
+      // thumbnail.innerHTML = `
+      //   <img src="${data.src}" alt="Thumbnail" style="max-width:100px; max-height:100px;">
+      //   <div class="dimensions">Dimensions: ${data.width} x ${data.height}</div>
+      // `;
+      // thumbnailCell.appendChild(thumbnail);
   });
 }
   
