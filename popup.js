@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Event listener for the Small button
     document.getElementById('smallImagesBtn').addEventListener('click', function() {
-      const smallImages = imagesData.filter(data => data.width <= 400);
+      const smallImages = imagesData.filter(data => data.width <= 400 && data.width >100);
       populateTable(smallImages);
     });
 
@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Function to get image data from the current page
   function getImageData() {
     const images = document.querySelectorAll('img');
+    console.log(images); // DEBUG
     return Array.from(images).map(img => ({
       src: img.src,
       width: img.naturalWidth,
