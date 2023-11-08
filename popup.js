@@ -27,6 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  // Event listener for the Download All button
+  document.getElementById('downloadAllBtn').addEventListener('click', function() {
+    // Only download images that are currently filtered and displayed
+    const imagesToDownload = document.querySelectorAll('#imagesTable tbody img');
+    imagesToDownload.forEach(img => {
+      chrome.downloads.download({ url: img.src });
+    });
+  });
+
   // Function to get image data from the current page
   function getImageData() {
     const images = document.querySelectorAll('img');
@@ -44,33 +53,34 @@ document.addEventListener('DOMContentLoaded', function() {
   
     images.forEach(data => {
       let row = tableBody.insertRow();
-      let cell = row.insertCell(0);
+     
+      // Cell for the image link
+      let linkCell = row.insertCell(0);
       let a = document.createElement('a');
       a.href = data.src;
       a.textContent = data.src;
       a.target = '_blank'; // Open links in a new tab
-  
-      // Create the Download button
+      linkCell.appendChild(a);
+
+      // Cell for the Download button
+      let downloadCell = row.insertCell(1);
       let downloadButton = document.createElement('button');
       downloadButton.textContent = 'Download';
       downloadButton.addEventListener('click', function(event) {
         event.preventDefault(); // Prevent navigation
-        chrome.downloads.download({ url: data.src }); // Use the chrome.downloads API to download the image
+        chrome.downloads.download({ url: data.src }); // Download the image
       });
+      downloadCell.appendChild(downloadButton);
 
-      // Style the button (optional)
-      downloadButton.style.marginLeft = '10px';
-    
+      // Cell for the thumbnail and dimensions
+      let thumbnailCell = row.insertCell(2);
       let thumbnail = document.createElement('span');
       thumbnail.className = 'thumbnail';
       thumbnail.innerHTML = `
-        <img src="${data.src}" alt="Thumbnail">
+        <img src="${data.src}" alt="Thumbnail" style="max-width:100px; max-height:100px;">
         <div class="dimensions">Dimensions: ${data.width} x ${data.height}</div>
       `;
-  
-      cell.appendChild(a);
-      cell.appendChild(downloadButton);
-      cell.appendChild(thumbnail);
-    });
-  }
+      thumbnailCell.appendChild(thumbnail);
+  });
+}
   
